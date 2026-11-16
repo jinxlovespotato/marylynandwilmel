@@ -65,12 +65,13 @@
             z-index: 5;
         }
 
-        .wax-container {
-            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.8s ease;
+        /* Seal slowly fades out and lifts when tapped */
+        .wax-seal {
+            transition: transform 1.2s cubic-bezier(0.25, 1, 0.35, 1), opacity 0.8s ease;
         }
 
-        .envelope-open .wax-container {
-            transform: scale(1.3) translateY(-10px);
+        .envelope-open .wax-seal {
+            transform: translate(-50%, -60px) scale(0.6);
             opacity: 0;
             pointer-events: none;
         }
@@ -144,13 +145,9 @@
             <!-- Envelope Flap (Top Fold) -->
             <div class="envelope-flap absolute top-0 left-0 right-0 h-36 bg-mocha border-b border-caramel/40 z-20 shadow-lg"></div>
 
-            <!-- Wax Seal & "Tap to Open" Text -->
-            <div class="wax-container absolute z-30 top-[90px] left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none">
-                <div class="w-16 h-16 rounded-full bg-caramel seal-pulse shadow-2xl border-2 border-gold flex flex-col items-center justify-center text-cardbg">
-                    <i class="fas fa-coffee text-lg mb-0.5 leading-none"></i>
-                    <span class="text-[9px] font-bold uppercase tracking-wider">M&W</span>
-                </div>
-                <span class="bg-espresso/90 text-oat text-[10px] tracking-widest uppercase px-3 py-1 rounded-full mt-2 border border-caramel/40 shadow-md">Tap seal to open</span>
+            <!-- Wax Seal with M & W Monogram -->
+            <div class="wax-seal absolute z-30 top-[104px] left-1/2 -translate-x-1/2 w-16 h-16 rounded-full bg-caramel seal-pulse shadow-2xl border-2 border-gold flex flex-col items-center justify-center text-cardbg pointer-events-none">
+                <span class="font-serif font-bold text-lg text-cardbg tracking-tight leading-none">M&W</span>
             </div>
 
             <!-- Front Pocket Overlay -->
@@ -169,7 +166,7 @@
                 <a href="#hero" class="hover:text-mocha transition-colors">Home</a>
                 <a href="#story" class="hover:text-mocha transition-colors">Our Story</a>
                 <a href="#details" class="hover:text-mocha transition-colors">Wedding Details</a>
-                <a href="#gallery" class="hover:text-mocha transition-colors">Gallery</a>
+                <a href="#gallery" class="hover:text-mocha transition-colors">Shared Memories</a>
                 <a href="#rsvp" class="hover:text-mocha transition-colors">RSVP</a>
                 <button onclick="reopenEnvelope()" class="bg-roast text-cardbg hover:bg-espresso font-semibold inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[11px] transition-colors shadow-sm">
                     <i class="fas fa-envelope-open text-xs leading-none"></i> Re-open Envelope
@@ -183,7 +180,7 @@
             <a href="#hero" onclick="toggleMobileMenu()" class="hover:text-mocha py-1">Home</a>
             <a href="#story" onclick="toggleMobileMenu()" class="hover:text-mocha py-1">Our Story</a>
             <a href="#details" onclick="toggleMobileMenu()" class="hover:text-mocha py-1">Wedding Details</a>
-            <a href="#gallery" onclick="toggleMobileMenu()" class="hover:text-mocha py-1">Gallery</a>
+            <a href="#gallery" onclick="toggleMobileMenu()" class="hover:text-mocha py-1">Shared Memories</a>
             <a href="#rsvp" onclick="toggleMobileMenu()" class="hover:text-mocha py-1">RSVP</a>
             <button onclick="reopenEnvelope(); toggleMobileMenu();" class="text-roast hover:text-espresso font-bold py-1 inline-flex items-center justify-center gap-1.5">
                 <i class="fas fa-envelope-open leading-none"></i> Re-open Envelope
@@ -236,9 +233,26 @@
             </div>
 
             <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 relative z-10">
-                <div class="inline-flex items-center justify-center gap-2 px-5 py-1.5 rounded-full bg-cardbg/90 border border-roast/20 text-roast text-xs font-semibold tracking-widest uppercase mb-6 shadow-sm">
-                    <i class="fas fa-heart text-mocha text-xs leading-none"></i> 
-                    <span>Warmly Request Your Presence</span>
+                <!-- Two Large Coffee Beans Forming a Heart Shape -->
+                <div class="flex justify-center items-center mb-6">
+                    <svg class="w-44 h-32 text-roast drop-shadow-md" viewBox="0 0 180 130" fill="none">
+                        <!-- Left Coffee Bean (Forms Left Half of the Heart) -->
+                        <g transform="translate(65, 65) rotate(-42)">
+                            <ellipse cx="0" cy="0" rx="28" ry="44" fill="#5A3828" stroke="#23130E" stroke-width="3.5"/>
+                            <!-- Subtle Highlight -->
+                            <path d="M -14 -26 C -19 -10, -19 10, -14 26" stroke="#B5834B" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+                            <!-- Coffee Bean Center S-Crease -->
+                            <path d="M 0 -34 C -8 -12, 8 12, 0 34" stroke="#E5D3B3" stroke-width="3" stroke-linecap="round"/>
+                        </g>
+                        <!-- Right Coffee Bean (Forms Right Half of the Heart) -->
+                        <g transform="translate(115, 65) rotate(42)">
+                            <ellipse cx="0" cy="0" rx="28" ry="44" fill="#3B2219" stroke="#23130E" stroke-width="3.5"/>
+                            <!-- Subtle Highlight -->
+                            <path d="M 14 -26 C 19 -10, 19 10, 14 26" stroke="#B5834B" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+                            <!-- Coffee Bean Center S-Crease -->
+                            <path d="M 0 -34 C 8 -12, -8 12, 0 34" stroke="#E5D3B3" stroke-width="3" stroke-linecap="round"/>
+                        </g>
+                    </svg>
                 </div>
                 
                 <h2 class="font-serif italic text-2xl sm:text-3xl text-roast font-semibold mb-2">Love is Brewing</h2>
@@ -251,7 +265,7 @@
                 </h1>
 
                 <p class="text-xs sm:text-sm font-sans font-semibold tracking-widest uppercase text-roast mb-10 max-w-md mx-auto border-y border-roast/25 py-3">
-                    Two Souls &bull; One Perfect Blend &bull; Forever Yours
+                    Two Souls &bull; One Perfect Blend &bull; Forever
                 </p>
 
                 <div class="mb-10">
@@ -444,12 +458,12 @@
             </div>
         </section>
 
-        <!-- Photo Gallery -->
+        <!-- Shared Memories Section -->
         <section id="gallery" class="py-20 bg-cardbg/60 rounded-3xl my-6 border border-roast/15 shadow-sm">
             <div class="max-w-6xl mx-auto px-4 sm:px-6">
                 <div class="text-center mb-16">
                     <span class="font-serif italic text-2xl text-mocha block mb-1">Captured Moments</span>
-                    <h2 class="font-serif text-3xl sm:text-5xl font-bold text-espresso">Gallery & Memories</h2>
+                    <h2 class="font-serif text-3xl sm:text-5xl font-bold text-espresso">Shared Memories</h2>
                     <div class="w-16 h-0.5 bg-roast mx-auto mt-4"></div>
                 </div>
 
@@ -499,7 +513,7 @@
             </div>
         </section>
 
-        <!-- Interactive RSVP Section (Dietary & Coffee Order Removed) -->
+        <!-- Interactive RSVP Section -->
         <section id="rsvp" class="py-20 relative">
             <div class="max-w-3xl mx-auto px-4 sm:px-6">
                 <div class="bg-cardbg/95 rounded-3xl p-6 sm:p-12 border border-roast/20 shadow-lg relative overflow-hidden">
@@ -651,7 +665,6 @@
             const title = encodeURIComponent("Mary Lyn & Wilmel's Wedding");
             const details = encodeURIComponent("Love is Brewing! Join Mary Lyn and Wilmel as they exchange vows.");
             const location = encodeURIComponent("The Grand Botanical Conservatory, Tagaytay");
-            // December 9, 2026 2:00 PM PHT (UTC+8) = 06:00 UTC to 13:00 UTC
             const googleUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20261209T060000Z/20261209T130000Z&details=${details}&location=${location}`;
             window.open(googleUrl, '_blank');
         }
