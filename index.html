@@ -119,13 +119,7 @@
     <!-- Interactive Envelope Opening Overlay -->
     <div id="envelope-overlay" class="fixed inset-0 z-50 bg-espresso/95 flex flex-col items-center justify-center p-4 transition-opacity duration-1000 backdrop-blur-md">
         
-        <!-- Envelope Logo / Branding -->
-        <div class="mb-4 flex justify-center z-30">
-            <img src="Gold Ornate Wedding Monogram Logo.png" alt="Wedding Logo" class="w-20 h-20 object-contain rounded-full shadow-sm border border-gold/40 bg-roast">
-        </div>
-
-        <div id="envelope-box" class="envelope-wrapper relative w-[320px] sm:w-[400px] h-[240px] sm:h-[300px] cursor-pointer" onclick="openEnvelope()">
-            
+ 
             <!-- Letter / Card Inside -->
             <div id="card-letter" class="card-letter absolute inset-x-4 top-4 h-[90%] bg-cardbg rounded-xl p-6 shadow-md border border-caramel/40 text-center flex flex-col justify-center items-center z-10">
                 <svg class="w-12 h-6 text-mocha mb-1" viewBox="0 0 100 50" fill="none" stroke="currentColor" stroke-width="3">
@@ -145,9 +139,12 @@
             <div class="envelope-flap absolute top-0 left-0 right-0 h-36 bg-mocha border-b border-caramel/40 z-20 shadow-lg"></div>
 
             <!-- Wax Seal with M & W Monogram -->
-            <div class="wax-seal absolute z-30 top-[104px] left-1/2 -translate-x-1/2 w-16 h-16 rounded-full bg-caramel seal-pulse shadow-2xl border-2 border-gold flex flex-col items-center justify-center text-cardbg pointer-events-none">
-                <span class="font-serif font-bold text-lg text-cardbg tracking-tight leading-none">M&W</span>
+            <div class="mb-4 flex justify-center z-30">
+                <img src="Gold Ornate Wedding Monogram Logo.png" alt="Wedding Logo" class="w-20 h-20 object-contain rounded-full shadow-sm border border-gold/40 bg-roast">
             </div>
+
+            <div id="envelope-box" class="envelope-wrapper relative w-[320px] sm:w-[400px] h-[240px] sm:h-[300px] cursor-pointer" onclick="openEnvelope()">
+            
 
             <!-- Front Pocket Overlay -->
             <div class="absolute bottom-0 left-0 right-0 h-34 bg-espresso/95 rounded-b-2xl z-20 border-t border-caramel/20"></div>
