@@ -119,23 +119,13 @@
     <!-- Interactive Envelope Opening Overlay -->
     <div id="envelope-overlay" class="fixed inset-0 z-50 bg-espresso/95 flex flex-col items-center justify-center p-4 transition-opacity duration-1000 backdrop-blur-md">
         
-        <!-- Envelope Logo / Branding -->
-        <div class="mb-4 flex justify-center z-30">
-            <img src="images/logo.jpg" alt="Wedding Logo" class="w-20 h-20 object-contain rounded-full shadow-sm border border-gold/40 bg-roast">
-        </div>
-
         <div id="envelope-box" class="envelope-wrapper relative w-[320px] sm:w-[400px] h-[240px] sm:h-[300px] cursor-pointer" onclick="openEnvelope()">
             
-            <!-- Letter / Card Inside -->
-            <div id="card-letter" class="card-letter absolute inset-x-4 top-4 h-[90%] bg-cardbg rounded-xl p-6 shadow-md border border-caramel/40 text-center flex flex-col justify-center items-center z-10">
-                <svg class="w-12 h-6 text-mocha mb-1" viewBox="0 0 100 50" fill="none" stroke="currentColor" stroke-width="3">
-                    <path d="M 10 50 A 40 40 0 0 1 90 50"></path>
-                    <circle cx="50" cy="15" r="4" fill="currentColor"></circle>
-                </svg>
-                <i class="fas fa-mug-hot text-mocha text-2xl mb-1 leading-none"></i>
-                <h3 class="font-serif font-bold text-xl text-espresso tracking-wide">Love is Brewing</h3>
-                <p class="font-cursive text-2xl text-roast mt-1">Mary Lyn & Wilmel</p>
-                <span class="text-[10px] text-mocha uppercase tracking-widest mt-2 font-semibold border-t border-mocha/20 pt-2">December 09, 2026 &bull; 2:00 PM</span>
+            <!-- Letter / Card Inside (With Canva Logo cleanly integrated) -->
+            <div id="card-letter" class="card-letter absolute inset-x-4 top-2 h-[96%] bg-cardbg rounded-xl p-4 shadow-md border border-caramel/40 text-center flex flex-col justify-center items-center z-10">
+                <!-- Canva Logo inside letter -->
+                <img src="Gold Ornate Wedding Monogram Logo.png" alt="Wedding Logo" class="w-28 h-28 sm:w-32 sm:h-32 object-contain rounded-lg shadow-sm border border-caramel/30 mb-2">
+                <span class="text-[10px] text-mocha uppercase tracking-widest font-semibold border-t border-mocha/20 pt-2">December 09, 2026 &bull; 12:00 NN</span>
             </div>
 
             <!-- Envelope Pocket Back -->
@@ -443,43 +433,43 @@
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                    <div class="relative overflow-hidden rounded-2xl shadow-sm cursor-pointer group h-72 bg-latte/20" onclick="openLightbox('images/IMG_5060.jpg', 'Perfect Blend')">
-                        <img src="images/IMG_5060.jpg" alt="Wedding Moment 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <div class="relative overflow-hidden rounded-2xl shadow-sm cursor-pointer group h-72 bg-latte/20" onclick="openLightbox('IMG_5060.jpg', 'Perfect Blend')">
+                        <img src="IMG_5060.jpg" alt="Wedding Moment 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
                         <div class="absolute inset-0 bg-gradient-to-t from-espresso/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
                             <span class="text-cardbg text-sm font-serif">Perfect Blend</span>
                         </div>
                     </div>
 
-                    <div class="relative overflow-hidden rounded-2xl shadow-sm cursor-pointer group h-72 bg-latte/20" onclick="openLightbox('images/IMG_2400.JPG', 'Coffee Date Afternoon')">
-                        <img src="images/IMG_2400.JPG" alt="Wedding Moment 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <div class="relative overflow-hidden rounded-2xl shadow-sm cursor-pointer group h-72 bg-latte/20" onclick="openLightbox('IMG_2400.JPG', 'Coffee Date Afternoon')">
+                        <img src="IMG_2400.JPG" alt="Wedding Moment 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
                         <div class="absolute inset-0 bg-gradient-to-t from-espresso/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
                             <span class="text-cardbg text-sm font-serif">Coffee Date Afternoon</span>
                         </div>
                     </div>
 
-                    <div class="relative overflow-hidden rounded-2xl shadow-sm cursor-pointer group h-72 bg-latte/20" onclick="openLightbox('images/IMG_1453.jpg', 'Waves of the Heart')">
-                        <img src="images/IMG_1453.jpg" alt="Wedding Moment 3" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <div class="relative overflow-hidden rounded-2xl shadow-sm cursor-pointer group h-72 bg-latte/20" onclick="openLightbox('IMG_1453.jpg', 'Waves of the Heart')">
+                        <img src="IMG_1453.jpg" alt="Wedding Moment 3" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
                         <div class="absolute inset-0 bg-gradient-to-t from-espresso/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
                             <span class="text-cardbg text-sm font-serif">Waves of the Heart</span>
                         </div>
                     </div>
 
-                    <div class="relative overflow-hidden rounded-2xl shadow-sm cursor-pointer group h-72 bg-latte/20" onclick="openLightbox('images/IMG_0812.jpg', 'Shadowed Heart')">
-                        <img src="images/IMG_0812.jpg" alt="Wedding Moment 4" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <div class="relative overflow-hidden rounded-2xl shadow-sm cursor-pointer group h-72 bg-latte/20" onclick="openLightbox('IMG_0812.jpg', 'Shadowed Heart')">
+                        <img src="IMG_0812.jpg" alt="Wedding Moment 4" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
                         <div class="absolute inset-0 bg-gradient-to-t from-espresso/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
                             <span class="text-cardbg text-sm font-serif">Shadowed Heart</span>
                         </div>
                     </div>
 
-                    <div class="relative overflow-hidden rounded-2xl shadow-sm cursor-pointer group h-72 bg-latte/20" onclick="openLightbox('images/IMG_0424.jpg', 'Smile and Kisses')">
-                        <img src="images/IMG_0424.jpg" alt="Wedding Moment 5" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <div class="relative overflow-hidden rounded-2xl shadow-sm cursor-pointer group h-72 bg-latte/20" onclick="openLightbox('IMG_0424.jpg', 'Smile and Kisses')">
+                        <img src="IMG_0424.jpg" alt="Wedding Moment 5" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
                         <div class="absolute inset-0 bg-gradient-to-t from-espresso/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
                             <span class="text-cardbg text-sm font-serif">Smile and Kisses</span>
                         </div>
                     </div>
 
-                    <div class="relative overflow-hidden rounded-2xl shadow-sm cursor-pointer group h-72 bg-latte/20" onclick="openLightbox('images/IMG_0174.jpg', 'The meeting')">
-                        <img src="images/IMG_0174.jpg" alt="Wedding Moment 6" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <div class="relative overflow-hidden rounded-2xl shadow-sm cursor-pointer group h-72 bg-latte/20" onclick="openLightbox('IMG_0174.jpg', 'The meeting')">
+                        <img src="IMG_0174.jpg" alt="Wedding Moment 6" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
                         <div class="absolute inset-0 bg-gradient-to-t from-espresso/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
                             <span class="text-cardbg text-sm font-serif">The meeting</span>
                         </div>
@@ -715,6 +705,7 @@
             }
         }
 
+        path="images/logo.jpg"
         function closeModal() {
             document.getElementById("rsvpModal").classList.add("hidden");
         }
