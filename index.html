@@ -39,16 +39,6 @@
         }
     </script>
     <style>
-        /* Steam Animation */
-        @keyframes steam {
-            0% { opacity: 0; transform: translateY(0) scaleX(1); }
-            50% { opacity: 0.6; transform: translateY(-15px) scaleX(1.2); }
-            100% { opacity: 0; transform: translateY(-30px) scaleX(1.5); }
-        }
-        .steam-1 { animation: steam 3.5s infinite ease-in-out; }
-        .steam-2 { animation: steam 3s infinite ease-in-out 0.8s; }
-        .steam-3 { animation: steam 4s infinite ease-in-out 1.5s; }
-
         /* Slow-Motion Envelope Unfolding Logic */
         .envelope-wrapper {
             perspective: 1200px;
@@ -121,18 +111,18 @@
         
         <div id="envelope-box" class="envelope-wrapper relative w-[320px] sm:w-[400px] h-[240px] sm:h-[300px] cursor-pointer" onclick="openEnvelope()">
             
-            <!-- Letter / Card Inside (Invitation) -->
+            <!-- Letter / Card Inside (Coffee-Inspired Invitation Letter) -->
             <div id="card-letter" class="card-letter absolute inset-x-4 top-4 h-[90%] bg-cardbg rounded-xl p-6 shadow-md border border-caramel/40 text-center flex flex-col justify-center items-center z-10">
                 <svg class="w-12 h-6 text-mocha mb-1" viewBox="0 0 100 50" fill="none" stroke="currentColor" stroke-width="3">
                     <path d="M 10 50 A 40 40 0 0 1 90 50"></path>
                     <circle cx="50" cy="15" r="4" fill="currentColor"></circle>
                 </svg>
                 <i class="fas fa-mug-hot text-mocha text-2xl mb-1 leading-none"></i>
-                <p class="font-serif italic text-xs sm:text-sm text-roast px-2">Steeped in love, grounded in coffee...</p>
-                <h3 class="font-serif font-bold text-lg sm:text-xl text-espresso tracking-wide mt-1">You're Invited to Our Forever Brew</h3>
+                <p class="font-serif italic text-xs sm:text-sm text-roast px-2">Of all the brews in life...</p>
+                <h3 class="font-serif font-bold text-lg sm:text-xl text-espresso tracking-wide mt-1">Our Favorite Blend is Us</h3>
                 <p class="font-cursive text-2xl sm:text-3xl text-roast mt-1">Mary Lyn & Wilmel</p>
-                <span class="text-[10px] text-mocha uppercase tracking-widest mt-2 font-semibold border-t border-mocha/20 pt-2">A toast to our sweetest chapter yet</span>
-           </div>
+                <span class="text-[10px] text-mocha uppercase tracking-widest mt-2 font-semibold border-t border-mocha/20 pt-2">Pull up a chair and join our forever cup</span>
+            </div>
 
             <!-- Envelope Pocket Back -->
             <div class="absolute inset-0 bg-roast rounded-2xl shadow-inner"></div>
@@ -150,6 +140,18 @@
         </div>
     </div>
 
+    <!-- Background Wedding Music (Supports MP3 or MP4 fallback) -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="Bridges.mp4.mp4" type="audio/mpeg">
+        <source src="Bridges.mp4.mp4" type="video/mp4">
+        <source src="Bridges.mp4.mp4" type="video/mp4">
+    </audio>
+
+    <!-- Floating Play/Pause Music Button -->
+    <button id="music-toggle" onclick="toggleMusic()" aria-label="Toggle Background Music" class="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-espresso text-gold border-2 border-gold/60 shadow-xl flex items-center justify-center hover:bg-roast transition-all">
+        <i id="music-icon" class="fas fa-volume-mute text-base leading-none"></i>
+    </button>
+
     <!-- Navigation Bar -->
     <nav class="fixed top-0 left-0 right-0 z-40 glass-panel transition-all duration-300 py-3 shadow-sm" id="navbar">
         <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
@@ -160,8 +162,8 @@
             <div class="hidden md:flex items-center space-x-8 font-semibold text-xs uppercase tracking-widest text-espresso">
                 <a href="#hero" class="hover:text-mocha transition-colors">Home</a>
                 <a href="#story" class="hover:text-mocha transition-colors">Our Story</a>
-                <a href="#details" class="hover:text-mocha transition-colors">Wedding Details</a>
                 <a href="#gallery" class="hover:text-mocha transition-colors">Shared Memories</a>
+                <a href="#details" class="hover:text-mocha transition-colors">Wedding Details</a>
                 <a href="#rsvp" class="hover:text-mocha transition-colors">RSVP</a>
                 <button onclick="reopenEnvelope()" class="bg-roast text-cardbg hover:bg-espresso font-semibold inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[11px] transition-colors shadow-sm">
                     <i class="fas fa-envelope-open text-xs leading-none"></i> Re-open Envelope
@@ -174,8 +176,8 @@
         <div id="mobile-menu" class="hidden md:hidden bg-cream border-b border-roast/20 px-6 py-4 flex flex-col space-y-4 font-semibold text-sm text-center uppercase tracking-wider text-espresso">
             <a href="#hero" onclick="toggleMobileMenu()" class="hover:text-mocha py-1">Home</a>
             <a href="#story" onclick="toggleMobileMenu()" class="hover:text-mocha py-1">Our Story</a>
-            <a href="#details" onclick="toggleMobileMenu()" class="hover:text-mocha py-1">Wedding Details</a>
             <a href="#gallery" onclick="toggleMobileMenu()" class="hover:text-mocha py-1">Shared Memories</a>
+            <a href="#details" onclick="toggleMobileMenu()" class="hover:text-mocha py-1">Wedding Details</a>
             <a href="#rsvp" onclick="toggleMobileMenu()" class="hover:text-mocha py-1">RSVP</a>
             <button onclick="reopenEnvelope(); toggleMobileMenu();" class="text-roast hover:text-espresso font-bold py-1 inline-flex items-center justify-center gap-1.5">
                 <i class="fas fa-envelope-open leading-none"></i> Re-open Envelope
@@ -296,55 +298,130 @@
             <div class="max-w-4xl mx-auto px-4 sm:px-6">
                 <div class="text-center mb-16">
                     <span class="font-serif italic text-2xl text-mocha block mb-1">Our Journey</span>
-                    <h2 class="font-serif text-3xl sm:text-5xl font-bold text-espresso">Our Story</h2>
+                    <h2 class="font-serif text-3xl sm:text-5xl font-bold text-espresso">A Love Story Written by Faith</h2>
                     <div class="w-16 h-0.5 bg-roast mx-auto mt-4"></div>
                 </div>
 
                 <div class="relative wrap overflow-hidden p-2 sm:p-6">
-                    <div class="border-2-2 absolute border-opacity-30 border-roast h-full border left-1/2 -translate-x-1/2"></div>
+                    <!-- Center Timeline Line (Desktop only) -->
+                    <div class="hidden md:block absolute border-opacity-30 border-roast h-full border left-1/2 -translate-x-1/2"></div>
 
                     <!-- Item 1 -->
-                    <div class="mb-12 flex justify-between items-center w-full flex-row-reverse">
-                        <div class="order-1 w-5/12"></div>
-                        <div class="z-20 flex items-center justify-center order-1 bg-mocha shadow-md w-9 h-9 rounded-full">
-                            <i class="fas fa-coffee text-cardbg text-xs leading-none"></i>
+                    <div class="mb-10 md:mb-12 flex flex-col md:flex-row-reverse justify-between items-center w-full">
+                        <div class="hidden md:block order-1 w-5/12"></div>
+                        <div class="z-20 flex items-center justify-center order-1 bg-mocha shadow-md w-10 h-10 rounded-full mb-3 md:mb-0">
+                            <i class="fas fa-music text-cardbg text-xs leading-none"></i>
                         </div>
-                        <div class="order-1 bg-cardbg rounded-2xl border border-roast/20 shadow-sm w-5/12 p-4 sm:p-6 text-right hover:shadow-md transition-shadow">
-                            <span class="text-[10px] sm:text-xs font-bold text-mocha uppercase tracking-widest block mb-1">First Espresso Shot</span>
-                            <h3 class="font-serif text-lg sm:text-xl font-bold text-espresso mb-1">A Chance Cafe Meeting</h3>
-                            <p class="text-xs sm:text-sm text-roast leading-relaxed">
-                                Wilmel and Mary Lyn first crossed paths at a quiet artisanal coffee house. Shared laughs over a pour-over turned a quick coffee run into a 4-hour conversation.
+                        <div class="order-1 bg-cardbg rounded-2xl border border-roast/20 shadow-sm w-full md:w-5/12 p-5 sm:p-6 text-center md:text-right hover:shadow-md transition-shadow">
+                            <span class="text-[10px] sm:text-xs font-bold text-mocha uppercase tracking-widest block mb-1">First Meeting</span>
+                            <h3 class="font-serif text-xl sm:text-2xl font-bold text-espresso mb-2">A Meeting Arranged by Faith</h3>
+                            <p class="text-xs sm:text-sm text-roast leading-relaxed mb-3">
+                                Wilmel and Mary first crossed paths at church, where their shared love for music brought them together as fellow choir members. What began as a simple friendship gradually blossomed into something more meaningful. Through shared moments, laughter, and fellowship, they found comfort, understanding, and companionship in each other.
+                            </p>
+                            <p class="text-xs sm:text-sm text-espresso italic font-medium">
+                                It was a beautiful beginning — a meeting arranged by Faith, strengthened by Hope, and united by Love.
                             </p>
                         </div>
                     </div>
 
                     <!-- Item 2 -->
-                    <div class="mb-12 flex justify-between items-center w-full">
-                        <div class="order-1 w-5/12"></div>
-                        <div class="z-20 flex items-center justify-center order-1 bg-roast shadow-md w-9 h-9 rounded-full">
-                            <i class="fas fa-heart text-cardbg text-xs leading-none"></i>
+                    <div class="mb-10 md:mb-12 flex flex-col md:flex-row justify-between items-center w-full">
+                        <div class="hidden md:block order-1 w-5/12"></div>
+                        <div class="z-20 flex items-center justify-center order-1 bg-roast shadow-md w-10 h-10 rounded-full mb-3 md:mb-0">
+                            <i class="fas fa-anchor text-cardbg text-xs leading-none"></i>
                         </div>
-                        <div class="order-1 bg-cardbg rounded-2xl border border-roast/20 shadow-sm w-5/12 p-4 sm:p-6 text-left hover:shadow-md transition-shadow">
-                            <span class="text-[10px] sm:text-xs font-bold text-mocha uppercase tracking-widest block mb-1">Simmering Love</span>
-                            <h3 class="font-serif text-lg sm:text-xl font-bold text-espresso mb-1">Warmth & Companionship</h3>
-                            <p class="text-xs sm:text-sm text-roast leading-relaxed">
-                                Through countless morning brews, road trips, and quiet evenings, they realized their personalities blended into something truly extraordinary.
+                        <div class="order-1 bg-cardbg rounded-2xl border border-roast/20 shadow-sm w-full md:w-5/12 p-5 sm:p-6 text-center md:text-left hover:shadow-md transition-shadow">
+                            <span class="text-[10px] sm:text-xs font-bold text-mocha uppercase tracking-widest block mb-1">Love Knows No Distance</span>
+                            <h3 class="font-serif text-xl sm:text-2xl font-bold text-espresso mb-2">A Bond Beyond the Seas</h3>
+                            <p class="text-xs sm:text-sm text-roast leading-relaxed mb-3">
+                                As a seafarer, Wilmel often finds himself sailing across distant waters, leaving miles between them. Yet, no matter how far apart they may be, distance has never weakened what they share. Through constant communication, patience, trust, and unwavering love, they have continued to nurture their relationship across the miles.
+                            </p>
+                            <p class="text-xs sm:text-sm text-espresso italic font-medium">
+                                Their journey is a testament to a love that remains steadfast despite the distance — proving that when two hearts are meant for each other, Love Knows No Distance.
                             </p>
                         </div>
                     </div>
 
                     <!-- Item 3 -->
-                    <div class="mb-4 flex justify-between items-center w-full flex-row-reverse">
-                        <div class="order-1 w-5/12"></div>
-                        <div class="z-20 flex items-center justify-center order-1 bg-espresso shadow-md w-9 h-9 rounded-full">
+                    <div class="mb-6 flex flex-col md:flex-row-reverse justify-between items-center w-full">
+                        <div class="hidden md:block order-1 w-5/12"></div>
+                        <div class="z-20 flex items-center justify-center order-1 bg-espresso shadow-md w-10 h-10 rounded-full mb-3 md:mb-0">
                             <i class="fas fa-ring text-gold text-xs leading-none"></i>
                         </div>
-                        <div class="order-1 bg-cardbg rounded-2xl border border-roast/20 shadow-sm w-5/12 p-4 sm:p-6 text-right hover:shadow-md transition-shadow">
-                            <span class="text-[10px] sm:text-xs font-bold text-mocha uppercase tracking-widest block mb-1">The Golden Roast</span>
-                            <h3 class="font-serif text-lg sm:text-xl font-bold text-espresso mb-1">The Proposal</h3>
-                            <p class="text-xs sm:text-sm text-roast leading-relaxed">
-                                Under a canopy of warm lights, Wilmel proposed to Mary Lyn with a custom cup: "Will you marry me & be my brew forever?" She said YES!
+                        <div class="order-1 bg-cardbg rounded-2xl border border-roast/20 shadow-sm w-full md:w-5/12 p-5 sm:p-6 text-center md:text-right hover:shadow-md transition-shadow">
+                            <span class="text-[10px] sm:text-xs font-bold text-mocha uppercase tracking-widest block mb-1">The Beginning of Forever</span>
+                            <h3 class="font-serif text-xl sm:text-2xl font-bold text-espresso mb-2">A New Chapter Together</h3>
+                            <p class="text-xs sm:text-sm text-roast leading-relaxed mb-3">
+                                After a journey filled with beautiful memories, countless prayers, and lessons that only time could teach, Wilmel and Mary are now ready to begin their greatest adventure yet — a lifetime together.
                             </p>
+                            <p class="text-xs sm:text-sm text-roast leading-relaxed mb-3">
+                                With God at the center of their relationship, they look forward to building a home filled with faith, understanding, joy, and unconditional love.
+                            </p>
+                            <p class="text-xs sm:text-sm text-espresso italic font-medium">
+                                What started as a friendship in the house of God has blossomed into a love story that leads them to forever.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Closing Story Note -->
+                <div class="text-center max-w-2xl mx-auto mt-6 pt-6 border-t border-roast/15 px-2">
+                    <p class="font-serif italic text-base sm:text-lg text-roast leading-relaxed">
+                        Here are some captured moments of two hearts, blessed by God, strengthened through time, and now ready to write the next chapter of their story — <span class="font-bold text-espresso">Together, Forever, and Always.</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Shared Memories Section (Positioned directly under Our Story) -->
+        <section id="gallery" class="py-20 bg-cardbg/60 rounded-3xl my-6 border border-roast/15 shadow-sm">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6">
+                <div class="text-center mb-16">
+                    <span class="font-serif italic text-2xl text-mocha block mb-1">Captured Moments</span>
+                    <h2 class="font-serif text-3xl sm:text-5xl font-bold text-espresso">Shared Memories</h2>
+                    <div class="w-16 h-0.5 bg-roast mx-auto mt-4"></div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    <div class="relative overflow-hidden rounded-2xl shadow-sm cursor-pointer group h-72 bg-latte/20" onclick="openLightbox('IMG_5060.jpg', 'Perfect Blend')">
+                        <img src="IMG_5060.jpg" alt="Wedding Moment 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-espresso/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                            <span class="text-cardbg text-sm font-serif">Perfect Blend</span>
+                        </div>
+                    </div>
+
+                    <div class="relative overflow-hidden rounded-2xl shadow-sm cursor-pointer group h-72 bg-latte/20" onclick="openLightbox('IMG_2400.JPG', 'Coffee Date Afternoon')">
+                        <img src="IMG_2400.JPG" alt="Wedding Moment 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-espresso/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                            <span class="text-cardbg text-sm font-serif">Coffee Date Afternoon</span>
+                        </div>
+                    </div>
+
+                    <div class="relative overflow-hidden rounded-2xl shadow-sm cursor-pointer group h-72 bg-latte/20" onclick="openLightbox('IMG_1453.jpg', 'Waves of the Heart')">
+                        <img src="IMG_1453.jpg" alt="Wedding Moment 3" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-espresso/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                            <span class="text-cardbg text-sm font-serif">Waves of the Heart</span>
+                        </div>
+                    </div>
+
+                    <div class="relative overflow-hidden rounded-2xl shadow-sm cursor-pointer group h-72 bg-latte/20" onclick="openLightbox('IMG_0812.jpg', 'Shadowed Heart')">
+                        <img src="IMG_0812.jpg" alt="Wedding Moment 4" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-espresso/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                            <span class="text-cardbg text-sm font-serif">Shadowed Heart</span>
+                        </div>
+                    </div>
+
+                    <div class="relative overflow-hidden rounded-2xl shadow-sm cursor-pointer group h-72 bg-latte/20" onclick="openLightbox('IMG_0424.jpg', 'Smile and Kisses')">
+                        <img src="IMG_0424.jpg" alt="Wedding Moment 5" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-espresso/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                            <span class="text-cardbg text-sm font-serif">Smile and Kisses</span>
+                        </div>
+                    </div>
+
+                    <div class="relative overflow-hidden rounded-2xl shadow-sm cursor-pointer group h-72 bg-latte/20" onclick="openLightbox('IMG_0174.jpg', 'The meeting')">
+                        <img src="IMG_0174.jpg" alt="Wedding Moment 6" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-espresso/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                            <span class="text-cardbg text-sm font-serif">The meeting</span>
                         </div>
                     </div>
                 </div>
@@ -416,61 +493,6 @@
                         <p class="text-roast leading-relaxed">
                             In honor of the sacredness of our ceremony, we kindly request that all guests dress modestly—avoiding overly revealing outfits, plunging necklines, or excessively short hemlines.
                         </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Shared Memories Section -->
-        <section id="gallery" class="py-20 bg-cardbg/60 rounded-3xl my-6 border border-roast/15 shadow-sm">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6">
-                <div class="text-center mb-16">
-                    <span class="font-serif italic text-2xl text-mocha block mb-1">Captured Moments</span>
-                    <h2 class="font-serif text-3xl sm:text-5xl font-bold text-espresso">Shared Memories</h2>
-                    <div class="w-16 h-0.5 bg-roast mx-auto mt-4"></div>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                    <div class="relative overflow-hidden rounded-2xl shadow-sm cursor-pointer group h-72 bg-latte/20" onclick="openLightbox('IMG_5060.jpg', 'Perfect Blend')">
-                        <img src="IMG_5060.jpg" alt="Wedding Moment 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                        <div class="absolute inset-0 bg-gradient-to-t from-espresso/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-                            <span class="text-cardbg text-sm font-serif">Perfect Blend</span>
-                        </div>
-                    </div>
-
-                    <div class="relative overflow-hidden rounded-2xl shadow-sm cursor-pointer group h-72 bg-latte/20" onclick="openLightbox('IMG_2400.JPG', 'Coffee Date Afternoon')">
-                        <img src="IMG_2400.JPG" alt="Wedding Moment 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                        <div class="absolute inset-0 bg-gradient-to-t from-espresso/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-                            <span class="text-cardbg text-sm font-serif">Coffee Date Afternoon</span>
-                        </div>
-                    </div>
-
-                    <div class="relative overflow-hidden rounded-2xl shadow-sm cursor-pointer group h-72 bg-latte/20" onclick="openLightbox('IMG_1453.jpg', 'Waves of the Heart')">
-                        <img src="IMG_1453.jpg" alt="Wedding Moment 3" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                        <div class="absolute inset-0 bg-gradient-to-t from-espresso/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-                            <span class="text-cardbg text-sm font-serif">Waves of the Heart</span>
-                        </div>
-                    </div>
-
-                    <div class="relative overflow-hidden rounded-2xl shadow-sm cursor-pointer group h-72 bg-latte/20" onclick="openLightbox('IMG_0812.jpg', 'Shadowed Heart')">
-                        <img src="IMG_0812.jpg" alt="Wedding Moment 4" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                        <div class="absolute inset-0 bg-gradient-to-t from-espresso/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-                            <span class="text-cardbg text-sm font-serif">Shadowed Heart</span>
-                        </div>
-                    </div>
-
-                    <div class="relative overflow-hidden rounded-2xl shadow-sm cursor-pointer group h-72 bg-latte/20" onclick="openLightbox('IMG_0424.jpg', 'Smile and Kisses')">
-                        <img src="IMG_0424.jpg" alt="Wedding Moment 5" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                        <div class="absolute inset-0 bg-gradient-to-t from-espresso/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-                            <span class="text-cardbg text-sm font-serif">Smile and Kisses</span>
-                        </div>
-                    </div>
-
-                    <div class="relative overflow-hidden rounded-2xl shadow-sm cursor-pointer group h-72 bg-latte/20" onclick="openLightbox('IMG_0174.jpg', 'The meeting')">
-                        <img src="IMG_0174.jpg" alt="Wedding Moment 6" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                        <div class="absolute inset-0 bg-gradient-to-t from-espresso/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-                            <span class="text-cardbg text-sm font-serif">The meeting</span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -567,17 +589,35 @@
                 <i class="fas fa-envelope leading-none"></i> 
                 <span>Re-play Opening Envelope Animation</span>
             </button>
-            <p class="text-xs text-latte/70 tracking-wider">#LoveIsBrewingForMaryLynAndWilmel &bull; December 09, 2026 &bull; 2:00 PM</p>
+            <p class="text-xs text-latte/70 tracking-wider">#LoveIsBrewingForMaryLynAndWilmel &bull; December 09, 2026 &bull; 12:00 NN</p>
         </div>
     </footer>
 
     <!-- JavaScript Logic -->
     <script>
+        function playWeddingMusic() {
+            const music = document.getElementById("bg-music");
+            const musicIcon = document.getElementById("music-icon");
+            if (!music) return;
+
+            music.volume = 0.7;
+            const playPromise = music.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    musicIcon.classList.remove("fa-volume-mute");
+                    musicIcon.classList.add("fa-volume-up");
+                }).catch((err) => {
+                    console.log("Audio waiting for interaction or missing file:", err);
+                });
+            }
+        }
+
         function openEnvelope() {
             const box = document.getElementById("envelope-box");
             const overlay = document.getElementById("envelope-overlay");
             
             box.classList.add("envelope-open");
+            playWeddingMusic();
 
             setTimeout(() => {
                 overlay.classList.add("opacity-0");
@@ -598,7 +638,20 @@
             }, 50);
         }
 
-        const weddingDate = new Date("December 09, 2026 14:00:00").getTime();
+        function toggleMusic() {
+            const music = document.getElementById("bg-music");
+            const musicIcon = document.getElementById("music-icon");
+
+            if (music.paused) {
+                playWeddingMusic();
+            } else {
+                music.pause();
+                musicIcon.classList.remove("fa-volume-up");
+                musicIcon.classList.add("fa-volume-mute");
+            }
+        }
+
+        const weddingDate = new Date("December 09, 2026 12:00:00").getTime();
 
         function updateCountdown() {
             const now = new Date().getTime();
